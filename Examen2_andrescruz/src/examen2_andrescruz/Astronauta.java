@@ -13,11 +13,11 @@ public class Astronauta {
     String nombre;
     String nacionalidad;
     double sueldo;
-    String experiencia;
+    int experiencia;
     String sexo;
     double peso;
 
-    public Astronauta(String nombre, String nacionalidad, double sueldo, String experiencia, String sexo, double peso) {
+    public Astronauta(String nombre, String nacionalidad, double sueldo, int experiencia, String sexo, double peso) {
         this.nombre = nombre;
         this.nacionalidad = nacionalidad;
         this.sueldo = sueldo;
@@ -52,13 +52,15 @@ public class Astronauta {
         this.sueldo = sueldo;
     }
 
-    public String getExperiencia() {
+    public int getExperiencia() {
         return experiencia;
     }
 
-    public void setExperiencia(String experiencia) {
+    public void setExperiencia(int experiencia) {
         this.experiencia = experiencia;
     }
+
+    
 
     public String getSexo() {
         return sexo;

@@ -68,7 +68,26 @@ public class Tripulada extends Naves{
     
     
     @Override
-    public int[] calcularTiempo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public double[] calcularTiempo() {
+        double[]tiempos=new double[2];
+        tiempos[0]=ida();
+        tiempos[1]=regreso();
+        return tiempos;
+    }
+    
+    public double ida(){
+        return super.destino.getDistancia()/(super.velocidad*(Math.pow(pesos(), 2)/100));
+    }
+    
+    public double regreso(){
+    return super.destino.getDistancia()/(super.velocidad*(pesos()/100));
+    }
+    
+    public double pesos(){
+        double totp=0;
+        for (int i = 0; i < astronautas.size(); i++) {
+            totp+=astronautas.get(i).getPeso();
+        }
+        return totp;
     }
 }

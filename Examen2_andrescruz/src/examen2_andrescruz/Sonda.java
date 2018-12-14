@@ -61,8 +61,18 @@ public class Sonda extends Naves{
     
     
     @Override
-    public int[] calcularTiempo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public double[] calcularTiempo() {
+        double[]tiempos=new double[2];
+        tiempos[0]=ida();
+        tiempos[1]=vuelta(tiempos[0]);
+        return tiempos;
+    }
+    
+    public double ida(){
+    return super.destino.getDistancia()/super.velocidad;
+    }
+    public double vuelta(double ida){
+    return 9.8*ida;
     }
 
     @Override

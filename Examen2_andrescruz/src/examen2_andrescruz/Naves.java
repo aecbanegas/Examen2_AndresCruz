@@ -44,7 +44,7 @@ public abstract class Naves {
         this.velocidad = velocidad;
     }
 
-    public abstract int[] calcularTiempo();
+    public abstract double[] calcularTiempo();
     
     @Override
     public String toString() {
