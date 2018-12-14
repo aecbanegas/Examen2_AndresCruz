@@ -5,11 +5,13 @@
  */
 package examen2_andrescruz;
 
+import java.io.Serializable;
+
 /**
  *
  * @author MBanegas
  */
-public class Astronauta {
+public class Astronauta implements Serializable{
 
     String nombre;
     String nacionalidad;
@@ -17,6 +19,7 @@ public class Astronauta {
     int experiencia;
     String sexo;
     double peso;
+    private static final long SerialVersionUID=1;
 
     public Astronauta(String nombre, String nacionalidad, double sueldo, int experiencia, String sexo, double peso) {
         this.nombre = nombre;

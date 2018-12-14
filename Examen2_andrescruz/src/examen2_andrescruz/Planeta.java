@@ -5,17 +5,20 @@
  */
 package examen2_andrescruz;
 
+import java.io.Serializable;
+
 /**
  *
  * @author MBanegas
  */
-public class Planeta {
+public class Planeta implements Serializable{
 
     String nombre;
     double temp;
     boolean anillos;
     String superficie;
     double distancia;
+    private static final long SerialVersionUID=3;
 
     public Planeta(String nombre, double temp, boolean anillos, String superficie, double distancia) {
         this.nombre = nombre;

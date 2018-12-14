@@ -5,15 +5,18 @@
  */
 package examen2_andrescruz;
 
+import java.io.Serializable;
+
 /**
  *
  * @author MBanegas
  */
-public abstract class Naves {
+public abstract class Naves implements Serializable {
 
     String num_serie;
     Planeta destino;
     double velocidad;
+    private static final long SerialVersionUID = 2;
 
     public Naves(String num_serie, Planeta destino, double velocidad) {
         this.num_serie = num_serie;

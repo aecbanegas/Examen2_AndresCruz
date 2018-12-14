@@ -31,37 +31,59 @@ public class Principal extends javax.swing.JFrame {
         for (int i = 0; i < an.getListaNaves().size(); i++) {
             naves.add(an.getListaNaves().get(i));
         }
-        DefaultTableModel m1=(DefaultTableModel)tablaAstronauta.getModel();
+        tablaAstron();
+        tablaNaves();
+        tablaPlane();
+    }
+
+    public void tablaAstron() {
+        DefaultTableModel m1 = (DefaultTableModel) tablaAstronauta.getModel();
+        for (int i = 0; i < m1.getRowCount(); i++) {
+            m1.removeRow(0);
+        }
+        tablaAstronauta.setModel(m1);
         for (int i = 0; i < astronautas.size(); i++) {
-            Astronauta aqui=astronautas.get(i);
-            Object[]Row={aqui.getNombre(),aqui.getNacionalidad(),aqui.getSueldo(),aqui.getExperiencia(),aqui.getSexo(),aqui.getPeso()};
+            Astronauta aqui = astronautas.get(i);
+            Object[] Row = {aqui.getNombre(), aqui.getNacionalidad(), aqui.getSueldo(), aqui.getExperiencia(), aqui.getSexo(), aqui.getPeso()};
             m1.addRow(Row);
         }
         tablaAstronauta.setModel(m1);
-        DefaultTableModel m2=(DefaultTableModel)tablaNave.getModel();
+    }
+
+    public void tablaPlane() {
+        DefaultTableModel m2 = (DefaultTableModel) tablaNave.getModel();
+        for (int i = 0; i < m2.getRowCount(); i++) {
+            m2.removeRow(0);
+        }
         for (int i = 0; i < naves.size(); i++) {
-            Naves aqui=naves.get(i);
-            Object[]Row=new Object[6];
+            Naves aqui = naves.get(i);
+            Object[] Row = new Object[6];
             if (aqui instanceof Sonda) {
-                Row[0]=aqui.getNum_serie();
-                Row[1]=aqui.getDestino();
-                Row[2]=aqui.getVelocidad();
-                Row[3]=((Sonda)aqui).getMaterial();
-                Row[4]=((Sonda)aqui).getPeso();
-            }else if(aqui instanceof Tripulada){
-                Row[0]=aqui.getNum_serie();
-                Row[1]=aqui.getDestino();
-                Row[2]=aqui.getVelocidad();
-                Row[5]=((Tripulada)aqui).getDespegue();
+                Row[0] = aqui.getNum_serie();
+                Row[1] = aqui.getDestino();
+                Row[2] = aqui.getVelocidad();
+                Row[3] = ((Sonda) aqui).getMaterial();
+                Row[4] = ((Sonda) aqui).getPeso();
+            } else if (aqui instanceof Tripulada) {
+                Row[0] = aqui.getNum_serie();
+                Row[1] = aqui.getDestino();
+                Row[2] = aqui.getVelocidad();
+                Row[5] = ((Tripulada) aqui).getDespegue();
             }
             m2.addRow(Row);
         }
         tablaNave.setModel(m2);
-        DefaultTableModel m3=(DefaultTableModel)tablaPlaneta.getModel();
+    }
+
+    public void tablaNaves() {
+        DefaultTableModel m3 = (DefaultTableModel) tablaPlaneta.getModel();
+        for (int i = 0; i < m3.getRowCount(); i++) {
+            m3.removeRow(0);
+        }
         for (int i = 0; i < planetas.size(); i++) {
-            Planeta aqui=planetas.get(i);
-            Object[]Row={aqui.getNombre(),aqui.getTemp(),aqui.isAnillos(),aqui.getSuperficie(),aqui.getDistancia()};
-            m3.addRow(Row);            
+            Planeta aqui = planetas.get(i);
+            Object[] Row = {aqui.getNombre(), aqui.getTemp(), aqui.isAnillos(), aqui.getSuperficie(), aqui.getDistancia()};
+            m3.addRow(Row);
         }
         tablaPlaneta.setModel(m3);
     }
@@ -224,9 +246,14 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel11.setText("Peso:");
 
-        js_pesoastro.setModel(new javax.swing.SpinnerNumberModel(50, 20, 500, 1));
+        js_pesoastro.setModel(new javax.swing.SpinnerNumberModel(50.0d, 20.0d, 500.0d, 1.0d));
 
         bt_crearastro.setText("Crear");
+        bt_crearastro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_crearastroMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -1077,9 +1104,41 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         crearNave.setModal(true);
         crearNave.setLocationRelativeTo(this);
-        crearNave.pack();   
+        crearNave.pack();
         crearNave.setVisible(true);
     }//GEN-LAST:event_bt_naveMouseClicked
+
+    private void bt_crearastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crearastroMouseClicked
+        // TODO add your handling code here:
+        try {
+            String nombre = tf_nomastro.getText();
+            String nac = tf_nacastro.getText();
+            double sueldo = (double) js_sueldoastro.getValue();
+            int exp = (int) js_expastro.getValue();
+            String sexo;
+            if (rb_m.isSelected()) {
+                sexo = "Masculino";
+            } else {
+                sexo = "Femenino";
+            }
+            double peso = (double) js_pesoastro.getValue();
+            astronautas.add(new Astronauta(nombre, nac, sueldo, exp, sexo, peso));
+            aa.setListaAstronauta(astronautas);
+            aa.escribirArchivo();
+            aa.cargarArchivo();
+            tf_nacastro.setText("");
+            tf_nomastro.setText("");
+            js_sueldoastro.setValue(0);
+            js_expastro.setValue(1);
+            rb_f.setSelected(false);
+            rb_m.setSelected(true);
+            js_pesoastro.setValue(50);
+            tablaAstron();
+            crearAstro.dispose();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_bt_crearastroMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1240,12 +1299,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_superplan;
     private javax.swing.JTextField tf_superplan1;
     // End of variables declaration//GEN-END:variables
-    ArrayList<Planeta>planetas=new ArrayList();
-    ArrayList<Astronauta>astronautas=new ArrayList();
-    ArrayList<Naves>naves=new ArrayList();
-    ArrayList<Astronauta>nodisponibles=new ArrayList();
-    boolean haynaves=false,hayastronautas=false,hayplanetas=false;
-    adminAstronauta aa=new adminAstronauta("./Astronautas.aecb");
-    adminNaves an=new adminNaves("./Naves.aecb");
-    adminPlanetas ap=new adminPlanetas("./Planetas.aecb");
+    ArrayList<Planeta> planetas = new ArrayList();
+    ArrayList<Astronauta> astronautas = new ArrayList();
+    ArrayList<Naves> naves = new ArrayList();
+    ArrayList<Astronauta> nodisponibles = new ArrayList();
+    boolean haynaves = false, hayastronautas = false, hayplanetas = false;
+    adminAstronauta aa = new adminAstronauta("./Astronautas.aecb");
+    adminNaves an = new adminNaves("./Naves.aecb");
+    adminPlanetas ap = new adminPlanetas("./Planetas.aecb");
 }
