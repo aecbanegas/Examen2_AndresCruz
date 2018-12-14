@@ -9,14 +9,14 @@ package examen2_andrescruz;
  *
  * @author MBanegas
  */
-public class Expedicion implements Runnable{
+public class Expedicion implements Runnable {
+
     Naves nave;
     Planeta destino;
 
-    
     @Override
     public void run() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

@@ -9,7 +9,8 @@ package examen2_andrescruz;
  *
  * @author MBanegas
  */
-public class Sonda extends Naves{
+public class Sonda extends Naves {
+
     String material;
     double peso;
 
@@ -59,25 +60,25 @@ public class Sonda extends Naves{
         this.velocidad = velocidad;
     }
     
-    
     @Override
     public double[] calcularTiempo() {
-        double[]tiempos=new double[2];
-        tiempos[0]=ida();
-        tiempos[1]=vuelta(tiempos[0]);
+        double[] tiempos = new double[2];
+        tiempos[0] = ida();
+        tiempos[1] = vuelta(tiempos[0]);
         return tiempos;
     }
-    
-    public double ida(){
-    return super.destino.getDistancia()/super.velocidad;
+
+    public double ida() {
+        return super.destino.getDistancia() / super.velocidad;
     }
-    public double vuelta(double ida){
-    return 9.8*ida;
+
+    public double vuelta(double ida) {
+        return 9.8 * ida;
     }
 
     @Override
     public String toString() {
         return "Sonda{" + "material=" + material + ", peso=" + peso + '}';
     }
-    
+
 }

@@ -10,6 +10,7 @@ package examen2_andrescruz;
  * @author MBanegas
  */
 public class Astronauta {
+
     String nombre;
     String nacionalidad;
     double sueldo;
@@ -26,8 +27,6 @@ public class Astronauta {
         this.peso = peso;
     }
 
-    
-    
     public String getNombre() {
         return nombre;
     }
@@ -60,8 +59,6 @@ public class Astronauta {
         this.experiencia = experiencia;
     }
 
-    
-
     public String getSexo() {
         return sexo;
     }
@@ -82,6 +79,5 @@ public class Astronauta {
     public String toString() {
         return "Nombre=" + nombre + " Nacionalidad=" + nacionalidad + " Sueldo=" + sueldo + " Experiencia=" + experiencia + " Sexo=" + sexo + " Peso=" + peso;
     }
-    
-    
+
 }

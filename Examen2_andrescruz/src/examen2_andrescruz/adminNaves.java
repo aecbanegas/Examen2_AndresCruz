@@ -18,6 +18,7 @@ import java.util.ArrayList;
  * @author MBanegas
  */
 public class adminNaves {
+
     private ArrayList<Naves> listaNaves = new ArrayList();
     private File archivo = null;
 
@@ -32,7 +33,6 @@ public class adminNaves {
     public void setListaNaves(ArrayList<Naves> listaNaves) {
         this.listaNaves = listaNaves;
     }
-
 
     public File getArchivo() {
         return archivo;
@@ -53,14 +53,14 @@ public class adminNaves {
     }
 
     public void cargarArchivo() {
-        try {            
+        try {
             listaNaves = new ArrayList();
             Naves temp;
             if (archivo.exists()) {
                 FileInputStream entrada
-                    = new FileInputStream(archivo);
+                        = new FileInputStream(archivo);
                 ObjectInputStream objeto
-                    = new ObjectInputStream(entrada);
+                        = new ObjectInputStream(entrada);
                 try {
                     while ((temp = (Naves) objeto.readObject()) != null) {
                         listaNaves.add(temp);
@@ -70,7 +70,7 @@ public class adminNaves {
                 }
                 objeto.close();
                 entrada.close();
-            }            
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }

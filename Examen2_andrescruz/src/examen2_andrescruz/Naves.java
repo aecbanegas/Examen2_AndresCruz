@@ -10,6 +10,7 @@ package examen2_andrescruz;
  * @author MBanegas
  */
 public abstract class Naves {
+
     String num_serie;
     Planeta destino;
     double velocidad;
@@ -45,10 +46,10 @@ public abstract class Naves {
     }
 
     public abstract double[] calcularTiempo();
-    
+
     @Override
     public String toString() {
         return "Naves{" + "num_serie=" + num_serie + ", destino=" + destino + ", velocidad=" + velocidad + '}';
     }
-    
+
 }

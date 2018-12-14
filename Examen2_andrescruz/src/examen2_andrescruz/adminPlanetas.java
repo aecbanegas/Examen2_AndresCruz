@@ -18,6 +18,7 @@ import java.util.ArrayList;
  * @author MBanegas
  */
 public class adminPlanetas {
+
     private ArrayList<Planeta> listaPlanetas = new ArrayList();
     private File archivo = null;
 
@@ -32,7 +33,7 @@ public class adminPlanetas {
     public void setListaPlanetas(ArrayList<Planeta> listaPlanetas) {
         this.listaPlanetas = listaPlanetas;
     }
-    
+
     public File getArchivo() {
         return archivo;
     }
@@ -52,14 +53,14 @@ public class adminPlanetas {
     }
 
     public void cargarArchivo() {
-        try {            
+        try {
             listaPlanetas = new ArrayList();
             Planeta temp;
             if (archivo.exists()) {
                 FileInputStream entrada
-                    = new FileInputStream(archivo);
+                        = new FileInputStream(archivo);
                 ObjectInputStream objeto
-                    = new ObjectInputStream(entrada);
+                        = new ObjectInputStream(entrada);
                 try {
                     while ((temp = (Planeta) objeto.readObject()) != null) {
                         listaPlanetas.add(temp);
@@ -69,7 +70,7 @@ public class adminPlanetas {
                 }
                 objeto.close();
                 entrada.close();
-            }            
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }

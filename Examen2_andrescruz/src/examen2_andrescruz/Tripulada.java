@@ -11,9 +11,10 @@ import java.util.ArrayList;
  *
  * @author MBanegas
  */
-public class Tripulada extends Naves{
+public class Tripulada extends Naves {
+
     String despegue;
-    ArrayList<Astronauta>astronautas=new ArrayList();
+    ArrayList<Astronauta> astronautas = new ArrayList();
 
     public Tripulada(String despegue, String num_serie, Planeta destino, double velocidad) {
         super(num_serie, destino, velocidad);
@@ -65,28 +66,26 @@ public class Tripulada extends Naves{
         return "Tripulada{" + "despegue=" + despegue + ", astronautas=" + astronautas + '}';
     }
 
-    
-    
     @Override
     public double[] calcularTiempo() {
-        double[]tiempos=new double[2];
-        tiempos[0]=ida();
-        tiempos[1]=regreso();
+        double[] tiempos = new double[2];
+        tiempos[0] = ida();
+        tiempos[1] = regreso();
         return tiempos;
     }
-    
-    public double ida(){
-        return super.destino.getDistancia()/(super.velocidad*(Math.pow(pesos(), 2)/100));
+
+    public double ida() {
+        return super.destino.getDistancia() / (super.velocidad * (Math.pow(pesos(), 2) / 100));
     }
-    
-    public double regreso(){
-    return super.destino.getDistancia()/(super.velocidad*(pesos()/100));
+
+    public double regreso() {
+        return super.destino.getDistancia() / (super.velocidad * (pesos() / 100));
     }
-    
-    public double pesos(){
-        double totp=0;
+
+    public double pesos() {
+        double totp = 0;
         for (int i = 0; i < astronautas.size(); i++) {
-            totp+=astronautas.get(i).getPeso();
+            totp += astronautas.get(i).getPeso();
         }
         return totp;
     }

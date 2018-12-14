@@ -18,6 +18,7 @@ import java.util.ArrayList;
  * @author MBanegas
  */
 public class adminAstronauta {
+
     private ArrayList<Astronauta> listaAstronauta = new ArrayList();
     private File archivo = null;
 
@@ -32,7 +33,7 @@ public class adminAstronauta {
     public void setListaAstronauta(ArrayList<Astronauta> listaAstronauta) {
         this.listaAstronauta = listaAstronauta;
     }
-    
+
     public File getArchivo() {
         return archivo;
     }
@@ -52,14 +53,14 @@ public class adminAstronauta {
     }
 
     public void cargarArchivo() {
-        try {            
+        try {
             listaAstronauta = new ArrayList();
             Astronauta temp;
             if (archivo.exists()) {
                 FileInputStream entrada
-                    = new FileInputStream(archivo);
+                        = new FileInputStream(archivo);
                 ObjectInputStream objeto
-                    = new ObjectInputStream(entrada);
+                        = new ObjectInputStream(entrada);
                 try {
                     while ((temp = (Astronauta) objeto.readObject()) != null) {
                         listaAstronauta.add(temp);
@@ -69,7 +70,7 @@ public class adminAstronauta {
                 }
                 objeto.close();
                 entrada.close();
-            }            
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }

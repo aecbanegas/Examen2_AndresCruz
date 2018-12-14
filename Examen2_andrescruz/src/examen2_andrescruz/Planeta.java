@@ -10,6 +10,7 @@ package examen2_andrescruz;
  * @author MBanegas
  */
 public class Planeta {
+
     String nombre;
     double temp;
     boolean anillos;
@@ -66,9 +67,7 @@ public class Planeta {
 
     @Override
     public String toString() {
-        return "Nombre=" + nombre + " Temperatura=" + temp + " Anillos=" + anillos + " Superficie=" + superficie + " Distancia de la Tierra=" + distancia;
+        return nombre;
     }
 
-    
-    
 }
