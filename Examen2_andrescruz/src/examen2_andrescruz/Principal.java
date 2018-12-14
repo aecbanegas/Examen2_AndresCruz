@@ -106,6 +106,23 @@ public class Principal extends javax.swing.JFrame {
         js_displan = new javax.swing.JSpinner();
         bt_crearplan = new javax.swing.JButton();
         crearNave = new javax.swing.JDialog();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        tf_numserienave = new javax.swing.JTextField();
+        jLabel31 = new javax.swing.JLabel();
+        cb_destinonave = new javax.swing.JComboBox<>();
+        jLabel32 = new javax.swing.JLabel();
+        js_velnave = new javax.swing.JSpinner();
+        jLabel33 = new javax.swing.JLabel();
+        cb_tiponave = new javax.swing.JComboBox<>();
+        jLabel34 = new javax.swing.JLabel();
+        tf_materialsondanave = new javax.swing.JTextField();
+        jLabel35 = new javax.swing.JLabel();
+        js_pesosondanave = new javax.swing.JSpinner();
+        jLabel36 = new javax.swing.JLabel();
+        tf_despeguenave = new javax.swing.JTextField();
+        bt_crearnave = new javax.swing.JButton();
         modAstro = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -137,7 +154,33 @@ public class Principal extends javax.swing.JFrame {
         js_displan1 = new javax.swing.JSpinner();
         bt_crearplan1 = new javax.swing.JButton();
         modNave = new javax.swing.JDialog();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        tf_numserienave1 = new javax.swing.JTextField();
+        jLabel39 = new javax.swing.JLabel();
+        cb_destinonave1 = new javax.swing.JComboBox<>();
+        jLabel40 = new javax.swing.JLabel();
+        js_velnave1 = new javax.swing.JSpinner();
+        jLabel41 = new javax.swing.JLabel();
+        cb_tiponave1 = new javax.swing.JComboBox<>();
+        jLabel42 = new javax.swing.JLabel();
+        tf_materialsondanave1 = new javax.swing.JTextField();
+        jLabel43 = new javax.swing.JLabel();
+        js_pesosondanave1 = new javax.swing.JSpinner();
+        jLabel44 = new javax.swing.JLabel();
+        tf_despeguenave1 = new javax.swing.JTextField();
+        bt_crearnave1 = new javax.swing.JButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
+        popupnaves = new javax.swing.JPopupMenu();
+        jmi_modnave = new javax.swing.JMenuItem();
+        jmi_elimnave = new javax.swing.JMenuItem();
+        popupplan = new javax.swing.JPopupMenu();
+        jmi_modplan = new javax.swing.JMenuItem();
+        jmi_elimplan = new javax.swing.JMenuItem();
+        popupastro = new javax.swing.JPopupMenu();
+        jmi_modastro = new javax.swing.JMenuItem();
+        jmi_elimastro = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaNave = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -360,15 +403,128 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jLabel29.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel29.setText("Crear Nave");
+
+        jLabel30.setText("Numero de Serie");
+
+        jLabel31.setText("Destino");
+
+        jLabel32.setText("Velocidad");
+
+        js_velnave.setModel(new javax.swing.SpinnerNumberModel(1.0d, 1.0d, null, 1.0d));
+
+        jLabel33.setText("Tipo de Nave");
+
+        cb_tiponave.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sonda", "Tripulada" }));
+
+        jLabel34.setText("Material (Sonda)");
+
+        tf_materialsondanave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_materialsondanaveActionPerformed(evt);
+            }
+        });
+
+        jLabel35.setText("Peso (Sonda)");
+
+        js_pesosondanave.setModel(new javax.swing.SpinnerNumberModel(1.0d, 1.0d, null, 1.0d));
+
+        jLabel36.setText("Lugar de Despegue (Tripulada)");
+
+        bt_crearnave.setText("Crear");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tf_numserienave))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel34)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tf_materialsondanave))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel35)
+                        .addGap(25, 25, 25)
+                        .addComponent(js_pesosondanave))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addComponent(jLabel31)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(cb_destinonave, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addComponent(jLabel32)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(js_velnave)))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel33)
+                                .addGap(18, 18, 18)
+                                .addComponent(cb_tiponave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel36))
+                        .addGap(0, 70, Short.MAX_VALUE))
+                    .addComponent(tf_despeguenave, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(bt_crearnave)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel30)
+                    .addComponent(tf_numserienave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel31)
+                    .addComponent(cb_destinonave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel32)
+                    .addComponent(js_velnave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel33)
+                    .addComponent(cb_tiponave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel34)
+                    .addComponent(tf_materialsondanave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel35)
+                    .addComponent(js_pesosondanave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tf_despeguenave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bt_crearnave)
+                .addGap(0, 40, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout crearNaveLayout = new javax.swing.GroupLayout(crearNave.getContentPane());
         crearNave.getContentPane().setLayout(crearNaveLayout);
         crearNaveLayout.setHorizontalGroup(
             crearNaveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         crearNaveLayout.setVerticalGroup(
             crearNaveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabel12.setText("Nombre:");
@@ -577,16 +733,147 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jLabel37.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
+        jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel37.setText("Modificar Nave");
+
+        jLabel38.setText("Numero de Serie");
+
+        jLabel39.setText("Destino");
+
+        jLabel40.setText("Velocidad");
+
+        js_velnave1.setModel(new javax.swing.SpinnerNumberModel(1.0d, 1.0d, null, 1.0d));
+
+        jLabel41.setText("Tipo de Nave");
+
+        cb_tiponave1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sonda", "Tripulada" }));
+
+        jLabel42.setText("Material (Sonda)");
+
+        tf_materialsondanave1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_materialsondanave1ActionPerformed(evt);
+            }
+        });
+
+        jLabel43.setText("Peso (Sonda)");
+
+        js_pesosondanave1.setModel(new javax.swing.SpinnerNumberModel(1.0d, 1.0d, null, 1.0d));
+
+        jLabel44.setText("Lugar de Despegue (Tripulada)");
+
+        bt_crearnave1.setText("Modificar");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel38)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tf_numserienave1))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel42)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tf_materialsondanave1))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel43)
+                        .addGap(25, 25, 25)
+                        .addComponent(js_pesosondanave1))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel6Layout.createSequentialGroup()
+                                    .addComponent(jLabel39)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(cb_destinonave1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel6Layout.createSequentialGroup()
+                                    .addComponent(jLabel40)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(js_velnave1)))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel41)
+                                .addGap(18, 18, 18)
+                                .addComponent(cb_tiponave1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel44))
+                        .addGap(0, 72, Short.MAX_VALUE))
+                    .addComponent(tf_despeguenave1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(bt_crearnave1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel38)
+                    .addComponent(tf_numserienave1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel39)
+                    .addComponent(cb_destinonave1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel40)
+                    .addComponent(js_velnave1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel41)
+                    .addComponent(cb_tiponave1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel42)
+                    .addComponent(tf_materialsondanave1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel43)
+                    .addComponent(js_pesosondanave1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel44)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tf_despeguenave1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bt_crearnave1)
+                .addGap(0, 21, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout modNaveLayout = new javax.swing.GroupLayout(modNave.getContentPane());
         modNave.getContentPane().setLayout(modNaveLayout);
         modNaveLayout.setHorizontalGroup(
             modNaveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         modNaveLayout.setVerticalGroup(
             modNaveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jmi_modnave.setText("Modificar");
+        popupnaves.add(jmi_modnave);
+
+        jmi_elimnave.setText("Eliminar");
+        popupnaves.add(jmi_elimnave);
+
+        jmi_modplan.setText("jMenuItem1");
+        popupplan.add(jmi_modplan);
+
+        jmi_elimplan.setText("jMenuItem2");
+        popupplan.add(jmi_elimplan);
+
+        jmi_modastro.setText("jMenuItem1");
+        popupastro.add(jmi_modastro);
+
+        jmi_elimastro.setText("jMenuItem2");
+        popupastro.add(jmi_elimastro);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -598,6 +885,11 @@ public class Principal extends javax.swing.JFrame {
                 "Numero de Serie", "Destino", "Velocidad", "Material", "Peso", "Despegue"
             }
         ));
+        tablaNave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaNaveMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaNave);
 
         tablaPlaneta.setModel(new javax.swing.table.DefaultTableModel(
@@ -608,6 +900,11 @@ public class Principal extends javax.swing.JFrame {
                 "Nombre", "Temperatura", "Tiene Anillos", "Superficie", "Distancia de la Tierra"
             }
         ));
+        tablaPlaneta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaPlanetaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tablaPlaneta);
 
         tablaAstronauta.setModel(new javax.swing.table.DefaultTableModel(
@@ -618,6 +915,11 @@ public class Principal extends javax.swing.JFrame {
                 "Nombre", "Nacionalidad", "Sueldo", "Experiencia", "Sexo", "Peso"
             }
         ));
+        tablaAstronauta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaAstronautaMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tablaAstronauta);
 
         jLabel1.setText("Astronautas");
@@ -641,10 +943,25 @@ public class Principal extends javax.swing.JFrame {
         bt_exp.setText("Expedicion");
 
         bt_astro.setText("Crear Astronautas");
+        bt_astro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_astroMouseClicked(evt);
+            }
+        });
 
         bt_plan.setText("Crear Planetas");
+        bt_plan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_planMouseClicked(evt);
+            }
+        });
 
         bt_nave.setText("Crear Naves");
+        bt_nave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_naveMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -711,6 +1028,59 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cb_anillosplan1ActionPerformed
 
+    private void tf_materialsondanaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_materialsondanaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_materialsondanaveActionPerformed
+
+    private void tf_materialsondanave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_materialsondanave1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_materialsondanave1ActionPerformed
+
+    private void tablaAstronautaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaAstronautaMouseClicked
+        // TODO add your handling code here:
+        if (evt.isMetaDown()) {
+            popupastro.show(evt.getComponent(), evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_tablaAstronautaMouseClicked
+
+    private void tablaPlanetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPlanetaMouseClicked
+        // TODO add your handling code here:
+        if (evt.isMetaDown()) {
+            popupplan.show(evt.getComponent(), evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_tablaPlanetaMouseClicked
+
+    private void tablaNaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaNaveMouseClicked
+        // TODO add your handling code here:
+        if (evt.isMetaDown()) {
+            popupnaves.show(evt.getComponent(), evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_tablaNaveMouseClicked
+
+    private void bt_astroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_astroMouseClicked
+        // TODO add your handling code here:
+        crearAstro.setModal(true);
+        crearAstro.setLocationRelativeTo(this);
+        crearAstro.pack();
+        crearAstro.setVisible(true);
+    }//GEN-LAST:event_bt_astroMouseClicked
+
+    private void bt_planMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_planMouseClicked
+        // TODO add your handling code here:
+        crearPlan.setModal(true);
+        crearPlan.setLocationRelativeTo(this);
+        crearPlan.pack();
+        crearPlan.setVisible(true);
+    }//GEN-LAST:event_bt_planMouseClicked
+
+    private void bt_naveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_naveMouseClicked
+        // TODO add your handling code here:
+        crearNave.setModal(true);
+        crearNave.setLocationRelativeTo(this);
+        crearNave.pack();   
+        crearNave.setVisible(true);
+    }//GEN-LAST:event_bt_naveMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -722,7 +1092,7 @@ public class Principal extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -749,6 +1119,8 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_astro;
     private javax.swing.JButton bt_crearastro;
+    private javax.swing.JButton bt_crearnave;
+    private javax.swing.JButton bt_crearnave1;
     private javax.swing.JButton bt_crearplan;
     private javax.swing.JButton bt_crearplan1;
     private javax.swing.JButton bt_exp;
@@ -758,6 +1130,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox cb_anillosplan;
     private javax.swing.JCheckBox cb_anillosplan1;
+    private javax.swing.JComboBox<String> cb_destinonave;
+    private javax.swing.JComboBox<String> cb_destinonave1;
+    private javax.swing.JComboBox<String> cb_tiponave;
+    private javax.swing.JComboBox<String> cb_tiponave1;
     private javax.swing.JDialog crearAstro;
     private javax.swing.JDialog crearNave;
     private javax.swing.JDialog crearPlan;
@@ -782,8 +1158,24 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -793,23 +1185,38 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JMenuItem jmi_elimastro;
+    private javax.swing.JMenuItem jmi_elimnave;
+    private javax.swing.JMenuItem jmi_elimplan;
+    private javax.swing.JMenuItem jmi_modastro;
+    private javax.swing.JMenuItem jmi_modnave;
+    private javax.swing.JMenuItem jmi_modplan;
     private javax.swing.JSpinner js_displan;
     private javax.swing.JSpinner js_displan1;
     private javax.swing.JSpinner js_expastro;
     private javax.swing.JSpinner js_expastrom;
     private javax.swing.JSpinner js_pesoastro;
     private javax.swing.JSpinner js_pesoastrom;
+    private javax.swing.JSpinner js_pesosondanave;
+    private javax.swing.JSpinner js_pesosondanave1;
     private javax.swing.JSpinner js_sueldoastro;
     private javax.swing.JSpinner js_sueldoastrom;
     private javax.swing.JSpinner js_tempplan;
     private javax.swing.JSpinner js_tempplan1;
+    private javax.swing.JSpinner js_velnave;
+    private javax.swing.JSpinner js_velnave1;
     private javax.swing.JDialog modAstro;
     private javax.swing.JDialog modNave;
     private javax.swing.JDialog modPlan;
+    private javax.swing.JPopupMenu popupastro;
+    private javax.swing.JPopupMenu popupnaves;
+    private javax.swing.JPopupMenu popupplan;
     private javax.swing.JRadioButton rb_f;
     private javax.swing.JRadioButton rb_fm;
     private javax.swing.JRadioButton rb_m;
@@ -818,12 +1225,18 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTable tablaNave;
     private javax.swing.JTable tablaPlaneta;
     private javax.swing.JTable tableExpedicion;
+    private javax.swing.JTextField tf_despeguenave;
+    private javax.swing.JTextField tf_despeguenave1;
+    private javax.swing.JTextField tf_materialsondanave;
+    private javax.swing.JTextField tf_materialsondanave1;
     private javax.swing.JTextField tf_nacastro;
     private javax.swing.JTextField tf_nacastrom;
     private javax.swing.JTextField tf_nomastro;
     private javax.swing.JTextField tf_nomastrom;
     private javax.swing.JTextField tf_nomplan;
     private javax.swing.JTextField tf_nomplan1;
+    private javax.swing.JTextField tf_numserienave;
+    private javax.swing.JTextField tf_numserienave1;
     private javax.swing.JTextField tf_superplan;
     private javax.swing.JTextField tf_superplan1;
     // End of variables declaration//GEN-END:variables
