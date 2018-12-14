@@ -19,7 +19,7 @@ public class Astronauta implements Serializable{
     int experiencia;
     String sexo;
     double peso;
-    private static final long SerialVersionUID=1;
+    private static final long SerialVersionUID=11;
 
     public Astronauta(String nombre, String nacionalidad, double sueldo, int experiencia, String sexo, double peso) {
         this.nombre = nombre;

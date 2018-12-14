@@ -6,6 +6,7 @@
 package examen2_andrescruz;
 
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,6 +28,12 @@ public class Principal extends javax.swing.JFrame {
         for (int i = 0; i < ap.getListaPlanetas().size(); i++) {
             planetas.add(ap.getListaPlanetas().get(i));
         }
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (int i = 0; i < planetas.size(); i++) {
+            modelo.addElement(planetas.get(i));
+        }
+        cb_destinonave.setModel(modelo);
+        cb_destinonave1.setModel(modelo);
         an.cargarArchivo();
         for (int i = 0; i < an.getListaNaves().size(); i++) {
             naves.add(an.getListaNaves().get(i));
@@ -37,10 +44,13 @@ public class Principal extends javax.swing.JFrame {
     }
 
     public void tablaAstron() {
+        tablaAstronauta.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Nombre", "Nacionalidad", "Sueldo", "Experiencia", "Sexo", "Peso"
+                }
+        ));
         DefaultTableModel m1 = (DefaultTableModel) tablaAstronauta.getModel();
-        for (int i = 0; i < m1.getRowCount(); i++) {
-            m1.removeRow(0);
-        }
         tablaAstronauta.setModel(m1);
         for (int i = 0; i < astronautas.size(); i++) {
             Astronauta aqui = astronautas.get(i);
@@ -50,36 +60,48 @@ public class Principal extends javax.swing.JFrame {
         tablaAstronauta.setModel(m1);
     }
 
-    public void tablaPlane() {
-        DefaultTableModel m2 = (DefaultTableModel) tablaNave.getModel();
-        for (int i = 0; i < m2.getRowCount(); i++) {
-            m2.removeRow(0);
-        }
-        for (int i = 0; i < naves.size(); i++) {
-            Naves aqui = naves.get(i);
-            Object[] Row = new Object[6];
-            if (aqui instanceof Sonda) {
-                Row[0] = aqui.getNum_serie();
-                Row[1] = aqui.getDestino();
-                Row[2] = aqui.getVelocidad();
-                Row[3] = ((Sonda) aqui).getMaterial();
-                Row[4] = ((Sonda) aqui).getPeso();
-            } else if (aqui instanceof Tripulada) {
-                Row[0] = aqui.getNum_serie();
-                Row[1] = aqui.getDestino();
-                Row[2] = aqui.getVelocidad();
-                Row[5] = ((Tripulada) aqui).getDespegue();
+    public void tablaNaves() {
+        try {
+            tablaNave.setModel(new javax.swing.table.DefaultTableModel(
+                    new Object[][]{},
+                    new String[]{
+                        "Numero de Serie", "Destino", "Velocidad", "Material", "Peso", "Despegue"
+                    }
+            ));
+
+            DefaultTableModel m2 = (DefaultTableModel) tablaNave.getModel();
+            for (int i = 0; i < naves.size(); i++) {
+                Naves aqui = naves.get(i);
+                Object[] Row = new Object[6];
+                if (aqui instanceof Sonda) {
+                    Row[0] = aqui.getNum_serie();
+                    Row[1] = aqui.getDestino();
+                    Row[2] = aqui.getVelocidad();
+                    Row[3] = ((Sonda) aqui).getMaterial();
+                    Row[4] = ((Sonda) aqui).getPeso();
+                } else if (aqui instanceof Tripulada) {
+                    Row[0] = aqui.getNum_serie();
+                    Row[1] = aqui.getDestino();
+                    Row[2] = aqui.getVelocidad();
+                    Row[5] = ((Tripulada) aqui).getDespegue();
+                }
+                m2.addRow(Row);
             }
-            m2.addRow(Row);
+            tablaNave.setModel(m2);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        tablaNave.setModel(m2);
+
     }
 
-    public void tablaNaves() {
+    public void tablaPlane() {
+        tablaPlaneta.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Nombre", "Temperatura", "Tiene Anillos", "Superficie", "Distancia de la Tierra"
+                }
+        ));
         DefaultTableModel m3 = (DefaultTableModel) tablaPlaneta.getModel();
-        for (int i = 0; i < m3.getRowCount(); i++) {
-            m3.removeRow(0);
-        }
         for (int i = 0; i < planetas.size(); i++) {
             Planeta aqui = planetas.get(i);
             Object[] Row = {aqui.getNombre(), aqui.getTemp(), aqui.isAnillos(), aqui.getSuperficie(), aqui.getDistancia()};
@@ -194,9 +216,6 @@ public class Principal extends javax.swing.JFrame {
         tf_despeguenave1 = new javax.swing.JTextField();
         bt_crearnave1 = new javax.swing.JButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
-        popupnaves = new javax.swing.JPopupMenu();
-        jmi_modnave = new javax.swing.JMenuItem();
-        jmi_elimnave = new javax.swing.JMenuItem();
         popupplan = new javax.swing.JPopupMenu();
         jmi_modplan = new javax.swing.JMenuItem();
         jmi_elimplan = new javax.swing.JMenuItem();
@@ -358,6 +377,11 @@ public class Principal extends javax.swing.JFrame {
         js_displan.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
 
         bt_crearplan.setText("Crear");
+        bt_crearplan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_crearplanMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -416,7 +440,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(js_displan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(bt_crearplan)
-                .addGap(0, 86, Short.MAX_VALUE))
+                .addGap(0, 36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout crearPlanLayout = new javax.swing.GroupLayout(crearPlan.getContentPane());
@@ -461,6 +485,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel36.setText("Lugar de Despegue (Tripulada)");
 
         bt_crearnave.setText("Crear");
+        bt_crearnave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_crearnaveMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -884,22 +913,21 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jmi_modnave.setText("Modificar");
-        popupnaves.add(jmi_modnave);
-
-        jmi_elimnave.setText("Eliminar");
-        popupnaves.add(jmi_elimnave);
-
-        jmi_modplan.setText("jMenuItem1");
+        jmi_modplan.setText("Modificar");
         popupplan.add(jmi_modplan);
 
-        jmi_elimplan.setText("jMenuItem2");
+        jmi_elimplan.setText("Eliminar");
+        jmi_elimplan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_elimplanActionPerformed(evt);
+            }
+        });
         popupplan.add(jmi_elimplan);
 
-        jmi_modastro.setText("jMenuItem1");
+        jmi_modastro.setText("Modificar");
         popupastro.add(jmi_modastro);
 
-        jmi_elimastro.setText("jMenuItem2");
+        jmi_elimastro.setText("Eliminar");
         popupastro.add(jmi_elimastro);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1078,10 +1106,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaPlanetaMouseClicked
 
     private void tablaNaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaNaveMouseClicked
-        // TODO add your handling code here:
-        if (evt.isMetaDown()) {
-            popupnaves.show(evt.getComponent(), evt.getX(), evt.getY());
-        }
+        // TODO add your handling code here:        
     }//GEN-LAST:event_tablaNaveMouseClicked
 
     private void bt_astroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_astroMouseClicked
@@ -1139,6 +1164,78 @@ public class Principal extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_bt_crearastroMouseClicked
+
+    private void bt_crearplanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crearplanMouseClicked
+        // TODO add your handling code here:
+        try {
+            String nombre = tf_nomplan.getText();
+            double temp = (double) js_tempplan.getValue();
+            boolean anillos = cb_anillosplan.isSelected();
+            String superficie = tf_superplan.getText();
+            double distancia = (double) js_displan.getValue();
+            planetas.add(new Planeta(nombre, temp, anillos, superficie, distancia));
+            ap.setListaPlanetas(planetas);
+            ap.escribirArchivo();
+            ap.cargarArchivo();
+            tablaPlane();
+            tf_nomplan.setText("");
+            js_tempplan.setValue(0);
+            cb_anillosplan.setSelected(false);
+            tf_superplan.setText("");
+            js_displan.setValue(0);
+            DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+            for (int i = 0; i < planetas.size(); i++) {
+                modelo.addElement(planetas.get(i));
+            }
+            cb_destinonave.setModel(modelo);
+            cb_destinonave1.setModel(modelo);
+            crearPlan.dispose();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_bt_crearplanMouseClicked
+
+    private void bt_crearnaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crearnaveMouseClicked
+        // TODO add your handling code here:
+        try {
+            String num_ser = tf_numserienave.getText();
+            Planeta destino = (Planeta) cb_destinonave.getSelectedItem();
+            double vel = (double) js_velnave.getValue();
+            String tipo = cb_tiponave.getSelectedItem().toString();
+            if (tipo.equals("Sonda")) {
+                String material = tf_materialsondanave.getText();
+                double peso = (double) js_pesosondanave.getValue();
+                naves.add(new Sonda(material, peso, num_ser, destino, vel));
+            } else {
+                String despegue = tf_despeguenave.getText();
+                naves.add(new Tripulada(despegue, num_ser, destino, vel));
+            }
+            an.setListaNaves(naves);
+            an.escribirArchivo();
+            an.cargarArchivo();
+            tablaNaves();
+            tf_numserienave.setText("");
+            cb_destinonave.setSelectedIndex(0);
+            js_velnave.setValue(1);
+            cb_tiponave.setSelectedIndex(0);
+            tf_materialsondanave.setText("");
+            js_pesosondanave.setValue(1);
+            tf_despeguenave.setText("");
+            crearNave.dispose();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_bt_crearnaveMouseClicked
+
+    private void jmi_elimplanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_elimplanActionPerformed
+        // TODO add your handling code here:
+        if (tablaPlaneta.getSelectedRow() >= 0) {
+            planetas.remove(tablaPlaneta.getSelectedRow());
+            ap.setListaPlanetas(planetas);
+            ap.escribirArchivo();
+            ap.cargarArchivo();
+            tablaPlane();
+        }
+    }//GEN-LAST:event_jmi_elimplanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1251,10 +1348,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JMenuItem jmi_elimastro;
-    private javax.swing.JMenuItem jmi_elimnave;
     private javax.swing.JMenuItem jmi_elimplan;
     private javax.swing.JMenuItem jmi_modastro;
-    private javax.swing.JMenuItem jmi_modnave;
     private javax.swing.JMenuItem jmi_modplan;
     private javax.swing.JSpinner js_displan;
     private javax.swing.JSpinner js_displan1;
@@ -1274,7 +1369,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDialog modNave;
     private javax.swing.JDialog modPlan;
     private javax.swing.JPopupMenu popupastro;
-    private javax.swing.JPopupMenu popupnaves;
     private javax.swing.JPopupMenu popupplan;
     private javax.swing.JRadioButton rb_f;
     private javax.swing.JRadioButton rb_fm;
