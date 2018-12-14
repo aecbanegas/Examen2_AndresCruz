@@ -52,7 +52,7 @@ public abstract class Naves implements Serializable {
 
     @Override
     public String toString() {
-        return "Naves{" + "num_serie=" + num_serie + ", destino=" + destino + ", velocidad=" + velocidad + '}';
+        return "Num_serie= " + num_serie + " destino=" + destino + " velocidad=" + velocidad;
     }
 
 }
