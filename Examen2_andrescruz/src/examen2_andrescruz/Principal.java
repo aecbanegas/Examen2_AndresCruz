@@ -1241,6 +1241,10 @@ public class Principal extends javax.swing.JFrame {
             for (int i = 0; i < naves.size(); i++) {
                 imprimir += "Posicion " + i + " " + naves.get(i) + "\n";
             }
+            nodisponibles.clear();
+            for (int i = 0; i < astronautas.size(); i++) {
+                nodisponibles.add(astronautas.get(i));
+            }
             String opcion = JOptionPane.showInputDialog(imprimir + "Seleccione una posicion para elegir su nave: ");
             int pos = 0;
             boolean flag = true;
@@ -1257,21 +1261,26 @@ public class Principal extends javax.swing.JFrame {
                     int opt = 0;
                     while (opt != -1) {
                         String imp = "";
-                        for (int i = 0; i < astronautas.size(); i++) {
-                            imp += i + " - " + astronautas.get(i) + "\n";
+                        for (int i = 0; i < nodisponibles.size(); i++) {
+                            imp += i + " - " + nodisponibles.get(i) + "\n";
                         }
-                        opt = Integer.parseInt(JOptionPane.showInputDialog(imp + "Ingrese una posicion para agregar astronautas!"));
+                        opt = Integer.parseInt(JOptionPane.showInputDialog(imp + "Ingrese una posicion para agregar astronautas!\nIngrese -1 para salir!"));
                         if (opt != -1) {
                             ((Tripulada) naves.get(pos)).getAstronautas().add(astronautas.get(opt));
                         }
                     }
                 }
-                Expedicion e = new Expedicion(naves.get(pos), tableExpedicion);
+                Expedicion e = new Expedicion(naves.get(pos), tableExpedicion);                
                 e.setIda(0);
                 e.setRegreso(0);
                 e.setVive(true);
                 Thread a = new Thread(e);
                 a.start();
+                naves.remove(pos);
+                an.setListaNaves(naves);
+                an.escribirArchivo();
+                an.cargarArchivo();
+                tablaNaves();
             } else {
                 JOptionPane.showMessageDialog(this, "Ingreso una posicion invalida.");
             }
