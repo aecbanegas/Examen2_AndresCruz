@@ -7,6 +7,7 @@ package examen2_andrescruz;
 
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -32,7 +33,7 @@ public class Principal extends javax.swing.JFrame {
         for (int i = 0; i < planetas.size(); i++) {
             modelo.addElement(planetas.get(i));
         }
-        cb_destinonave.setModel(modelo);        
+        cb_destinonave.setModel(modelo);
         an.cargarArchivo();
         for (int i = 0; i < an.getListaNaves().size(); i++) {
             naves.add(an.getListaNaves().get(i));
@@ -1072,7 +1073,7 @@ public class Principal extends javax.swing.JFrame {
             for (int i = 0; i < planetas.size(); i++) {
                 modelo.addElement(planetas.get(i));
             }
-            cb_destinonave.setModel(modelo);            
+            cb_destinonave.setModel(modelo);
             crearPlan.dispose();
         } catch (Exception e) {
             e.printStackTrace();
@@ -1107,6 +1108,7 @@ public class Principal extends javax.swing.JFrame {
             tf_despeguenave.setText("");
             crearNave.dispose();
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_bt_crearnaveMouseClicked
 
@@ -1189,8 +1191,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void jmi_modplanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_modplanActionPerformed
         // TODO add your handling code here:
-        if (tablaPlaneta.getSelectedRow()>=0) {
-            Planeta mal=planetas.get(tablaPlaneta.getSelectedRow());
+        if (tablaPlaneta.getSelectedRow() >= 0) {
+            Planeta mal = planetas.get(tablaPlaneta.getSelectedRow());
             tf_nomplan1.setText(mal.getNombre());
             js_tempplan1.setValue(mal.getTemp());
             cb_anillosplan1.setSelected(mal.isAnillos());
@@ -1225,7 +1227,7 @@ public class Principal extends javax.swing.JFrame {
             for (int i = 0; i < planetas.size(); i++) {
                 modelo.addElement(planetas.get(i));
             }
-            cb_destinonave.setModel(modelo);            
+            cb_destinonave.setModel(modelo);
             modPlan.dispose();
         } catch (Exception e) {
             e.printStackTrace();
@@ -1235,8 +1237,46 @@ public class Principal extends javax.swing.JFrame {
     private void bt_expMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_expMouseClicked
         // TODO add your handling code here:
         try {
-            String imprimir="";
+            String imprimir = "";
+            for (int i = 0; i < naves.size(); i++) {
+                imprimir += "Posicion " + i + " " + naves.get(i) + "\n";
+            }
+            String opcion = JOptionPane.showInputDialog(imprimir + "Seleccione una posicion para elegir su nave: ");
+            int pos = 0;
+            boolean flag = true;
+            while (flag) {
+                try {
+                    pos = Integer.parseInt(opcion);
+                    flag = false;
+                } catch (Exception e) {
+                    opcion = JOptionPane.showInputDialog(imprimir + "Seleccione una posicion para elegir su nave: ");
+                }
+            }
+            if (pos >= 0 && pos < naves.size()) {
+                if (naves.get(pos) instanceof Tripulada) {
+                    int opt = 0;
+                    while (opt != -1) {
+                        String imp = "";
+                        for (int i = 0; i < astronautas.size(); i++) {
+                            imp += i + " - " + astronautas.get(i) + "\n";
+                        }
+                        opt = Integer.parseInt(JOptionPane.showInputDialog(imp + "Ingrese una posicion para agregar astronautas!"));
+                        if (opt != -1) {
+                            ((Tripulada) naves.get(pos)).getAstronautas().add(astronautas.get(opt));
+                        }
+                    }
+                }
+                Expedicion e = new Expedicion(naves.get(pos), tableExpedicion);
+                e.setIda(0);
+                e.setRegreso(0);
+                e.setVive(true);
+                Thread a = new Thread(e);
+                a.start();
+            } else {
+                JOptionPane.showMessageDialog(this, "Ingreso una posicion invalida.");
+            }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_bt_expMouseClicked
 

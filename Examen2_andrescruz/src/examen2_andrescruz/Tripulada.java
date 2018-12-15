@@ -5,13 +5,14 @@
  */
 package examen2_andrescruz;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author MBanegas
  */
-public class Tripulada extends Naves {
+public class Tripulada extends Naves{
 
     String despegue;
     ArrayList<Astronauta> astronautas = new ArrayList();

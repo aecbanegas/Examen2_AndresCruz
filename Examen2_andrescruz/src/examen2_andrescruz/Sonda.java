@@ -5,11 +5,13 @@
  */
 package examen2_andrescruz;
 
+import java.io.Serializable;
+
 /**
  *
  * @author MBanegas
  */
-public class Sonda extends Naves {
+public class Sonda extends Naves{
 
     String material;
     double peso;
